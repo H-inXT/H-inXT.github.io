@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  
+  
+  
+  <entry>
+    <title>搭建一个静态博客 hexo</title>
+    <link href="/2019/12/19/%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2-hexo/"/>
+    <url>/2019/12/19/%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2-hexo/</url>
+    
+    <content type="html"><![CDATA[<pre><code>1.打开nodejs.org</code></pre><p>下载最新的稳定版，安装，打卡终端输入node -v查看版本并且检查是否安装成功，在输入npm -v 查看包管理器是否安装成功，nodejs 靠nmp来安装-待定  hexo需要npm安装</p><p>具体过程：<br>在linux下有一个目录是专门拿来放软件的，那就是/usr/</p><p>/usr/bin    系统预设的可执行文件，如开关机在这里，优先级最高</p><p>/usr/local/bin   用户本身相关的可执行文件，如自己安装的软件推荐放在这里，会提升到全局</p><p>/usr/sbin    基本同上</p><p>可以把我们刚刚的文件放到/usr/local/bin下，这样就可以直接全局使用，而且不用设置软连接，不过我这里由于习惯问题，我会把文件放到/usr/sbin文件夹下，具体流程是一样的。</p><p>(1)我们需要把/root/nodejs文件夹移动到/usr/sbin/目录下<br>    mv    /root/nodejs/     /usr/sbin/</p><p>(2)为了使nodejs能够全局使用，我们需要配置一下软链接（类似于快捷方式，如果安装的路径在/usr/local/bin/下不需要这一步操作），当然也是软连接到用户目录下/usr/local/bin/</p><pre><code>ln -s  /usr/sbin/nodejs/bin/node    /usr/local/bin/ln -s  /usr/sbin/nodejs/bin/npm    /usr/local/bin/</code></pre><p>(3)检查安装结果</p><pre><code>node  -vnpm   -version2.npm install -g cnpm --registry=https://registry.npm.taobao.org</code></pre><p>由于npm的镜像源是国内下载较慢，所以先安装cnmp淘宝镜像源<br>之后在进行软连接（此步骤相当于全局变量 创建快捷方式）<br>ln -s /usr/sbin/nodejs/bin/cnpm(找到相应的目录) /usr/local/bin/cnmp</p><pre><code>3.cnmp install -g hexo-cli</code></pre><p>用cnpm安装hexo模块 之后再进行软连接<br>ln -s /usr/sbin/nodejs/bin/hexo(找到相应的目录) /usr/local/bin/hexo</p><pre><code>4.mkdir blog</code></pre><p>在相应的文件夹下建立 如user下（随意）<br>创建一个文件夹如：blog<br>博客的所有文件都在这个文件夹下</p><pre><code>5.sudo hexo init</code></pre><p>hexo模板建立 hexo 初始化，在刚才建立的文件夹下</p><pre><code>6.hexo s</code></pre><p>启动hexo博客</p><pre><code>7.hexo n &quot;博客标题&quot;</code></pre><p>建立新的博客文章</p><pre><code>8.hexo clean</code></pre><p>清理博客缓存</p><pre><code>9.hexo g</code></pre><p>生成hexo博客</p><pre><code>10.部署到github</code></pre><p>登入账号，新建..，点击加号，然后点击new,<br>然后名称必须是自己的github 昵称+github.io 如：H_inXT.github.io</p><pre><code>11.cnpm install  --save hexo-deployer-git</code></pre><p>安装一个github插件</p><pre><code>12.vim _config.yml</code></pre><p>在blog文件夹下打开<br>找到Deployment（有可能在最后）<br>type: git<br>repo: 在github上的新建的地址<br>branch: maste</p><p>冒号后面有空格</p><pre><code>13.hexo d</code></pre><p>部署到github远端</p><p>有可能出现问题：<br>fatal: unable to auto-detect email address (got ‘root@bogon.(none)’)<br>error: src refspec HEAD does not match any.<br>error: 无法推送一些引用到 ‘<a href="https://github.com/H-inXT/H-inXT.github.io.git&#39;" target="_blank" rel="noopener">https://github.com/H-inXT/H-inXT.github.io.git&#39;</a></p><p>解决方法：<br>    $ git config –global user.name “wuyanqina”                *<br>    $ git config –global user.email “<a href="mailto:greenovia@qq.com">greenovia@qq.com</a>“（换成你的邮箱地址）    *</p><p>有问题可修改github里的设置 或者修改本地的文件</p><p>如果出现问题可查阅，一般都有</p><pre><code>14.H-inXT.github.io</code></pre><p>在浏览器中输入你的仓库名</p><pre><code>15.https://github.com/litten/hexo-theme-yilia</code></pre><p>推荐主题</p><pre><code>16.git clone https://github.com/litten/hexo-theme-yilia themes/yilia</code></pre><p>克隆主题到本地的 theme/yilia 目录下</p><pre><code>17.vim _config.yml</code></pre><p>修改#Extensions 下的<br>    theme:克隆到本地的主题（本地的文件名）</p><pre><code>18.hexo cleanhexo ghexo s(预览)hexo d(部署)</code></pre>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>教程</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>我的第一篇博客文章</title>
+    <link href="/2019/12/11/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/"/>
+    <url>/2019/12/11/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/</url>
+    
+    <content type="html"><![CDATA[<p>##第一章</p><p>内容</p><hr><p>##第二章</p><p>内容</p><hr><p>##参考文献</p><p><a href="http://www.H" target="_blank" rel="noopener">www.H</a>_…<br><a href="http://www.H-inXT.github.io" target="_blank" rel="noopener">www.H-inXT.github.io</a></p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="/2019/12/11/hello-world/"/>
+    <url>/2019/12/11/hello-world/</url>
+    
+    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo new <span class="hljs-string">"My New Post"</span><br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo server<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo generate<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo deploy<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  
+</search>
